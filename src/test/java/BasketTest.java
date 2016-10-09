@@ -3,8 +3,9 @@ import domain.Item;
 import org.junit.Before;
 import org.junit.Test;
 
-import static org.hamcrest.Matchers.contains;
-import static org.hamcrest.Matchers.is;
+import java.util.Arrays;
+
+import static org.hamcrest.Matchers.*;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertThat;
 
@@ -32,6 +33,21 @@ public class BasketTest {
     }
 
     @Test
+    public void addsListOfItemsToBasket() {
+
+        BasketItem orange = new BasketItem(Item.ORANGE, 0.19);
+        BasketItem peach = new BasketItem(Item.PEACH, 0.32);
+        BasketItem lemon = new BasketItem(Item.LEMON, 0.10);
+
+        basket.add(orange);
+        basket.addAll(Arrays.asList(peach, lemon));
+
+        assertThat(basket.items().size(), is(3));
+        assertThat(basket.items(), hasItems(peach, lemon));
+
+    }
+
+    @Test
     public void calculatesCostOfBasket() {
 
         BasketItem orange = new BasketItem(Item.ORANGE,0.30);
@@ -51,8 +67,4 @@ public class BasketTest {
         assertEquals("The total cost of the basket is 0.00",basket.cost());
 
     }
-
-
-
-
 }

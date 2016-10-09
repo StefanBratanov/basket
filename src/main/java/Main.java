@@ -1,6 +1,8 @@
 import domain.BasketItem;
 import domain.Item;
 
+import java.util.Arrays;
+
 public class Main {
 
     public static void main(String[] args) {
@@ -18,6 +20,8 @@ public class Main {
         basket.add(apple);
         basket.add(lemon);
         basket.add(peach);
+
+        basket.addAll(Arrays.asList(banana, orange));
 
         System.out.println(basket.cost());
 
