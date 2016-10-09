@@ -25,7 +25,7 @@ public class Basket {
 
     public String cost() {
         Double cost = items.stream()
-                .map(basketItem -> basketItem.getPrice())
+                .map(basketItem -> basketItem.price())
                 .reduce((x, y) -> x + y)
                 .orElse(0.00);
 

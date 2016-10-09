@@ -10,11 +10,7 @@ public class BasketItem {
         this.price = price;
     }
 
-    public Item getItem() {
-        return item;
-    }
-
-    public Double getPrice() {
+    public Double price() {
         return price;
     }
 }
