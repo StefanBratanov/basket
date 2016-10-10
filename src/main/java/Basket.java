@@ -1,7 +1,10 @@
 import domain.BasketItem;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
+
+import static validators.PriceValidator.validate;
 
 public class Basket {
 
@@ -24,11 +27,12 @@ public class Basket {
     }
 
     public String cost() {
-        Double cost = items.stream()
+        BigDecimal cost = items.stream()
+                .peek(basketItem -> validate(basketItem.price()))
                 .map(basketItem -> basketItem.price())
-                .reduce((x, y) -> x + y)
-                .orElse(0.00);
+                .reduce((x, y) -> x.add(y))
+                .orElse(BigDecimal.ZERO).setScale(2);
 
-        return String.format("The total cost of the basket is %.2f", cost);
+        return String.format("The total cost of the basket is %s", cost.toString());
     }
 }
