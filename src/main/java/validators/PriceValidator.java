@@ -11,6 +11,6 @@ public class PriceValidator {
     }
 
     public static boolean isNegative(BigDecimal price) {
-        return price.signum() == -1 ? true : false;
+        return price.signum() == -1;
     }
 }
